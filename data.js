@@ -3,13 +3,12 @@ const express = require('express');
 const { exec } = require('child_process');
 
 const app = express();
+
+POSTGRES_URL="postgres://default:2jsLywPhBUR0@ep-proud-frost-a43l5fbh-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
+
 const pool = new Pool({
-  user: 'postgres',
-  host: '34.130.15.240',
-  database: 'newtestdb',
-  password: 'Makeitbetter@1',
-  port: 5432,
-});
+  connectionString: POSTGRES_URL ,
+})
 
 app.get('/', (req, res) => {
 	res.send('hello world')
@@ -19,7 +18,8 @@ app.get('/', (req, res) => {
 app.get('/api/election_data', async (req, res) => {
   try {
     const client = await pool.connect();
-    const result = await client.query('SELECT * FROM "Election_2024"');
+    console.log(client)
+    const result = await client.query('SELECT * FROM Election_2024');
     const rows = result.rows;
     await client.release();
     
@@ -37,10 +37,4 @@ app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
   
   // Open Chrome with the specified URL after the server starts
-  import('open').then(module => {
-    const open = module.default;
-    open(`http://localhost:${PORT}${API_PATH}`);
-  }).catch(error => {
-    console.error('Error opening Chrome:', error);
-  });
 });
