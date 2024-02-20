@@ -1,0 +1,16 @@
+{
+    "version" : 2,
+    "name" : "ansatz-events-backend",
+    "builds" : [
+        {
+            "src" : "server.js",
+            "use" : "@vercel/node"
+        }
+    ],
+    "routes" : [
+        {
+            "src" : "/(.*)",
+            "dest" : "/server.js"
+        }
+    ]
+}

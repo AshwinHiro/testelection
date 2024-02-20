@@ -25,7 +25,7 @@ app.get('/api/election_data', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const API_PATH = '/api/election_data';
 
 app.listen(PORT, () => {
