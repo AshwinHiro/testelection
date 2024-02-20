@@ -1,16 +1,16 @@
 {
     "version" : 2,
-    "name" : "ansatz-events-backend",
+    "name" : "election-data-backend",
     "builds" : [
         {
-            "src" : "server.js",
+            "src" : "data.js",
             "use" : "@vercel/node"
         }
     ],
     "routes" : [
         {
             "src" : "/(.*)",
-            "dest" : "/server.js"
+            "dest" : "/data.js"
         }
     ]
 }
