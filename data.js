@@ -11,6 +11,11 @@ const pool = new Pool({
   port: 5432,
 });
 
+app.get('/', (req, res) => {
+	res.send('hello world')
+
+})
+
 app.get('/api/election_data', async (req, res) => {
   try {
     const client = await pool.connect();
